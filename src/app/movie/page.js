@@ -1,4 +1,4 @@
-import Link from 'next/link'
+
 import React from 'react'
 import Moviecard from '../components/Moviecard';
 import style from '@/app/style/common.module.css';
@@ -6,7 +6,7 @@ import style from '@/app/style/common.module.css';
 
 const page = async () => {
   // await new Promise(resolve=> setTimeout(resolve , 2000));
-  const url = process.env.RAPID_KEY;
+  const url = "https://netflix54.p.rapidapi.com/search/?query=stranger&offset=0&limit_titles=50&limit_suggestions=20&lang=en";
 const options = {
   method: 'GET',
   headers: {
