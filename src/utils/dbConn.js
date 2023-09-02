@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const MONGODB_URL = "mongodb+srv://brijesh122004:nextwebsite@cluster0.v3jio1o.mongodb.net/userdata?retryWrites=true&w=majority";
 
@@ -8,11 +8,10 @@ if (!MONGODB_URL) {
     )
 }
 
-
 let cached = global.mongoose;
 
 if (!cached) {
-    cached = global.mongoose = {con: null, promise: null}
+    cached = global.mongoose = { conn: null, promise: null }
 }
 
 const dbConnect = async () => {
@@ -20,16 +19,15 @@ const dbConnect = async () => {
         return cached.conn;
     }
 
-
-// If a connection does not exist, we check if a promise is already in progress. If a promise is already in progress, we wait for it to resolve to get the connection
     if (!cached.promise) {
         const opts = {
-            bufferCommands : false
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
         };
 
         cached.promise = mongoose.connect(MONGODB_URL, opts).then((mongoose) => {
-            return mongoose
-        })
+            return mongoose;
+        });
     }
 
     try {
